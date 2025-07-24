@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This project provides a Payment smart contract that enables payments using ETH or ERC20/BEP20 tokens, supports vault management, pausing/unpausing, upgradability, and event querying. The contract has been deployed on two networks:
+This project provides a Payment smart contract that enables payments using BNB (on BSC), HBAR (on Hedera), or ERC20/BEP20 tokens. It supports vault management, pausing/unpausing, upgradability, and event querying. The contract has been deployed on two networks:
 
 - **Hedera Mainnet:** [0.0.9374436](https://hashscan.io/mainnet/contract/0.0.9374436)
 - **BSC Mainnet:** [0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487](https://bscscan.com/address/0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487)
 
 ## Main Features
-- Payment with ETH or tokens (ERC20/BEP20)
+- Payment with BNB (BSC), HBAR (Hedera), or tokens (ERC20/BEP20)
 - Vault management for receiving funds
 - Pause/unpause contract
 - Upgradable contract (proxy pattern)
@@ -43,12 +43,14 @@ yarn hardhat payment:deploy --network hederaMainnet --vault <vault_address> [--v
 ```bash
 yarn hardhat payment:pay --network <network> --contract <contract_address> --payment <token_address_or_0x0> --amount <amount> --id <payment_id>
 ```
-- For native token payments (ETH/BNB/HBAR), use `--payment 0x0000000000000000000000000000000000000000`
+- For native token payments (BNB on BSC, HBAR on Hedera), use `--payment 0x0000000000000000000000000000000000000000`
+- For token payments, use the token contract address as `--payment`
 
-### Deposit ETH/BNB/HBAR to Vault
+### Deposit BNB/HBAR to Vault
 ```bash
 yarn hardhat payment:depositETH --network <network> --contract <contract_address> --amount <amount>
 ```
+- On BSC, this deposits BNB. On Hedera, this deposits HBAR.
 
 ### Pause/Unpause Contract
 ```bash
