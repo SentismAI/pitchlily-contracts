@@ -47,24 +47,39 @@ const config: HardhatUserConfig = {
       chainId: 31337,
     },
     bscTestnet: {
-      url: process.env.RPC_URL_BSC_TESTNET || "https://data-seed-prebsc-1-s1.binance.org:8545",
+      url:
+        process.env.RPC_URL_BSC_TESTNET ||
+        "https://data-seed-prebsc-1-s1.binance.org:8545",
       accounts: [`0x${privateKey}`],
     },
     bscMainnet: {
-      url: process.env.RPC_URL_BSC_MAINNET || "https://bsc-dataseed.binance.org",
+      url:
+        process.env.RPC_URL_BSC_MAINNET || "https://bsc-dataseed.binance.org",
       accounts: [`0x${privateKey}`],
     },
     sepolia: {
-      url: process.env.RPC_URL_SEPOLIA || "https://eth-sepolia.public.blastapi.io",
+      url:
+        process.env.RPC_URL_SEPOLIA || "https://eth-sepolia.public.blastapi.io",
       accounts: [`0x${privateKey}`],
     },
     hederaTestnet: {
-      url: process.env.RPC_URL_HEDERA_TESTNET || "https://testnet.hashio.io/api",
+      url:
+        process.env.RPC_URL_HEDERA_TESTNET || "https://testnet.hashio.io/api",
       accounts: [`0x${privateKey}`],
     },
     hederaMainnet: {
       url:
         process.env.RPC_URL_HEDERA_MAINNET || "https://mainnet.hashio.io/api",
+      accounts: [`0x${privateKey}`],
+    },
+    seiTestnet: {
+      url:
+        process.env.RPC_URL_SEI_TESTNET ||
+        "https://evm-rpc-testnet.sei-apis.com",
+      accounts: [`0x${privateKey}`],
+    },
+    seiMainnet: {
+      url: process.env.RPC_URL_SEI_MAINNET || "https://evm-rpc.sei-apis.com",
       accounts: [`0x${privateKey}`],
     },
   },

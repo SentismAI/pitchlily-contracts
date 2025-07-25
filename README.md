@@ -2,13 +2,14 @@
 
 ## Introduction
 
-This project provides a Payment smart contract that enables payments using BNB (on BSC), HBAR (on Hedera), or ERC20/BEP20 tokens. It supports vault management, pausing/unpausing, upgradability, and event querying. The contract has been deployed on two networks:
+This project provides a Payment smart contract that enables payments using BNB (on BSC), HBAR (on Hedera), SEI (on Sei), or ERC20/BEP20 tokens. It supports vault management, pausing/unpausing, upgradability, and event querying. The contract has been deployed on three networks:
 
 - **Hedera Mainnet:** [0.0.9374436](https://hashscan.io/mainnet/contract/0.0.9374436)
 - **BSC Mainnet:** [0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487](https://bscscan.com/address/0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487)
+- **Sei Mainnet:** [0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487](https://seitrace.com/address/0x0C87C8Bc77180Df785bA7e31268b88EAc6bd5487?chain=pacific-1)
 
 ## Main Features
-- Payment with BNB (BSC), HBAR (Hedera), or tokens (ERC20/BEP20)
+- Payment with BNB (BSC), HBAR (Hedera), SEI (Sei), or tokens (ERC20/BEP20)
 - Vault management for receiving funds
 - Pause/unpause contract
 - Upgradable contract (proxy pattern)
@@ -25,9 +26,6 @@ Create a `.env` file with the following variables:
 
 ```
 PRIVATE_KEY=your_private_key
-RPC_URL_BSC_MAINNET=https://bsc-dataseed.binance.org
-RPC_URL_HEDERA_MAINNET=https://mainnet.hashio.io/api
-ETHERSCAN_API_KEY_BSC_MAINNET=your_bscscan_api_key
 ```
 
 ## Deploy Contract
@@ -35,6 +33,7 @@ ETHERSCAN_API_KEY_BSC_MAINNET=your_bscscan_api_key
 ```bash
 yarn hardhat payment:deploy --network bscMainnet --vault <vault_address> [--verify]
 yarn hardhat payment:deploy --network hederaMainnet --vault <vault_address> [--verify]
+yarn hardhat payment:deploy --network seiMainnet --vault <vault_address> [--verify]
 ```
 
 ## Usage
@@ -43,14 +42,14 @@ yarn hardhat payment:deploy --network hederaMainnet --vault <vault_address> [--v
 ```bash
 yarn hardhat payment:pay --network <network> --contract <contract_address> --payment <token_address_or_0x0> --amount <amount> --id <payment_id>
 ```
-- For native token payments (BNB on BSC, HBAR on Hedera), use `--payment 0x0000000000000000000000000000000000000000`
+- For native token payments (BNB on BSC, HBAR on Hedera, SEI on Sei), use `--payment 0x0000000000000000000000000000000000000000`
 - For token payments, use the token contract address as `--payment`
 
-### Deposit BNB/HBAR to Vault
+### Deposit BNB/HBAR/SEI to Vault
 ```bash
 yarn hardhat payment:depositETH --network <network> --contract <contract_address> --amount <amount>
 ```
-- On BSC, this deposits BNB. On Hedera, this deposits HBAR.
+- On BSC, this deposits BNB. On Hedera, this deposits HBAR. On Sei, this deposits SEI.
 
 ### Pause/Unpause Contract
 ```bash

@@ -137,7 +137,13 @@ task("payment:upgrade")
 
     const contractProxy = await hre.upgrades.upgradeProxy(
       contractAddress,
-      contractFactory
+      contractFactory,
+      {
+        // txOverrides: {
+        //   gasLimit: 3000000,
+        //   gasPrice: ethers.parseUnits("400", "gwei"),
+        // },
+      }
     );
     await contractProxy.waitForDeployment();
 
